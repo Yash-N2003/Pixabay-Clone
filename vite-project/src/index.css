@@ -1,19 +1,20 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box; /* Ensure padding and margin are included in width/height calculations */
 }
 
-body{
+body {
   background-color: cadetblue;
   color: bisque;
-  padding: 0;
-  margin: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 body::-webkit-scrollbar {
-  display: none;
+  display: none; /* Hide scrollbar */
 }
 
+/* Flex/Grid Layout for Images */
 .flex {
   display: grid;
   justify-content: center;
@@ -22,6 +23,7 @@ body::-webkit-scrollbar {
   gap: 50px;
 }
 
+/* Item Styles */
 .item {
   width: 100%;
   height: auto;
@@ -31,15 +33,54 @@ body::-webkit-scrollbar {
   align-items: center;
 }
 
+/* Image Styles */
 .item img {
-  max-width: 100%;
-  height: auto;
+  max-width: 100%; /* Ensure images do not exceed their container */
+  height: auto; /* Maintain aspect ratio */
   object-fit: cover;
   border-radius: 10px;
   border: 2px solid whitesmoke;
   transition: transform 0.5s ease;
 }
 
+/* Hover Effect */
 .item img:hover {
   transform: scale(1.1);
+}
+
+/* Button Group Styles */
+.btn-group {
+  display: flex; /* Enable flexbox for button group */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .flex {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Smaller columns on mobile */
+      gap: 20px; /* Reduced gap for smaller screens */
+  }
+
+  .item img {
+      border-radius: 5px; /* Smaller border radius on mobile */
+  }
+}
+
+@media (max-width: 576px) {
+  .btn-group {
+      flex-direction: column; /* Stack buttons vertically on small screens */
+      align-items: center; /* Center align buttons */
+  }
+
+  .btn {
+      width: 100%; /* Make buttons full width */
+      margin-bottom: 10px; /* Add space between stacked buttons */
+  }
+
+  body {
+      font-size: 14px; /* Adjust font size for smaller screens */
+  }
+
+  .flex {
+      gap: 10px; /* Further reduce gap for very small screens */
+  }
 }
